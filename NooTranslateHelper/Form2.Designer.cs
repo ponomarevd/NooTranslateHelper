@@ -31,11 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.roundButton1 = new NooTranslateHelper.RoundButton();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.savePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -51,6 +54,20 @@
             this.label1.TabIndex = 4;
             this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyTextToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 26);
+            // 
+            // copyTextToolStripMenuItem
+            // 
+            this.copyTextToolStripMenuItem.Name = "copyTextToolStripMenuItem";
+            this.copyTextToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+            this.copyTextToolStripMenuItem.Text = "Copy";
+            this.copyTextToolStripMenuItem.Click += new System.EventHandler(this.copyTextToolStripMenuItem_Click);
+            // 
             // textBox1
             // 
             this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -63,20 +80,6 @@
             this.textBox1.Text = "Enter the translation...";
             this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.copyTextToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 48);
-            // 
-            // copyTextToolStripMenuItem
-            // 
-            this.copyTextToolStripMenuItem.Name = "copyTextToolStripMenuItem";
-            this.copyTextToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.copyTextToolStripMenuItem.Text = "Copy";
-            this.copyTextToolStripMenuItem.Click += new System.EventHandler(this.copyTextToolStripMenuItem_Click);
             // 
             // roundButton1
             // 
@@ -99,15 +102,36 @@
             this.roundButton1.Text = "SEND TO DOCUMENT";
             this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.savePointToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(499, 24);
+            this.menuStrip1.TabIndex = 7;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // savePointToolStripMenuItem
+            // 
+            this.savePointToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.savePointToolStripMenuItem.Name = "savePointToolStripMenuItem";
+            this.savePointToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
+            this.savePointToolStripMenuItem.Text = "Load translate";
+            this.savePointToolStripMenuItem.Click += new System.EventHandler(this.savePointToolStripMenuItem_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(499, 245);
+            this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.roundButton1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(515, 284);
             this.MinimumSize = new System.Drawing.Size(515, 284);
             this.Name = "Form2";
@@ -115,6 +139,8 @@
             this.Text = "Translate Tool";
             this.Load += new System.EventHandler(this.Form2_Load);
             this.contextMenuStrip1.ResumeLayout(false);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,5 +153,7 @@
         private RoundButton roundButton1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem copyTextToolStripMenuItem;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem savePointToolStripMenuItem;
     }
 }

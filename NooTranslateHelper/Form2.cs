@@ -15,7 +15,6 @@ namespace NooTranslateHelper
 {
     public partial class Form2 : Form
     {
-        public StreamReader sr;
         public StreamWriter Writer;
         string[] readText;
         int k = 0;
@@ -26,7 +25,7 @@ namespace NooTranslateHelper
         async void WriteToFile(string path)
         {
             Writer = new StreamWriter(path, true);
-            await Writer.WriteLineAsync(textBox1.Text + "\n");
+            await Writer.WriteLineAsync($"{textBox1.Text}\n");
             Writer.Close();
         }
 
@@ -77,10 +76,7 @@ namespace NooTranslateHelper
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            sr = new StreamReader(Program.FileName);
-            File.OpenRead(Program.FilePath);
             readText = File.ReadAllLines(Program.FilePath);
-            sr.Close();
             label1.Text = readText[0];
             for (int i = 1; i < readText.Length; i++)
             {
@@ -102,6 +98,26 @@ namespace NooTranslateHelper
         private void copyTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
             label1_Click(sender, e);    
+        }
+
+        private void savePointToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+            ofd.ShowDialog();
+            string TranslateFilePath = ofd.FileName;
+            string[] translateText = File.ReadAllLines(TranslateFilePath);
+            for (int i = 0; i < translateText.Length; i++)
+            {
+                if (translateText[i] == "")
+                {
+                    translateText[i] = null;
+                }
+            }
+            translateText = translateText.Where(x => x != null).ToArray();
+
+            k = translateText.Length;
+            label1.Text = readText[k];
+            
         }
     }
 }
