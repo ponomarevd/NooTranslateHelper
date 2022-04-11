@@ -31,7 +31,7 @@ namespace NooTranslateHelper
         }
         private void roundButton1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Trim() == String.Empty)                       //проверка на пустоту строки
+            if (textBox1.Text.Trim() == String.Empty || textBox1.Text == "Enter the translation...") //проверка на пустоту строки и дефолтной надписи
             {
                 textBox1.Clear();
                 MessageBox.Show("Please write the translation", "Error");
