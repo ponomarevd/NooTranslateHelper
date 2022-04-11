@@ -8,7 +8,6 @@ namespace NooTranslateHelper
 {
     internal static class Program
     {
-        public static string FileName;
         public static string RealFileName;
         public static string FilePath;
         public static ApplicationContext Context { get; set; }

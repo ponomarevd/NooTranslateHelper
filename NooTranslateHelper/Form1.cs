@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace NooTranslateHelper
@@ -18,7 +12,7 @@ namespace NooTranslateHelper
         {
             InitializeComponent();
         }
-        OpenFileDialog ofd;
+        OpenFileDialog ofd;                                                 //инициализируем объект класса OpenFileDialog, для дальнейшей загрузки файла
 
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -27,16 +21,17 @@ namespace NooTranslateHelper
             {
                 ofd = new OpenFileDialog(); 
                 ofd.ShowDialog();                                           //открываем окошко с выбором файла по клику на PictureBox
+
                 Program.RealFileName = ofd.SafeFileName;                    //получаем имя файла
-                Program.FileName = ofd.FileName.ToString();
-                Program.FilePath = Path.GetFullPath(Program.FileName);
 
-                string AllText = File.ReadAllText(Program.FilePath);
+                Program.FilePath = ofd.FileName;                            //получаем путь к файлу
 
-                if (!(!Regex.IsMatch(AllText, @"\p{IsCyrillic}")))
+                string AllText = File.ReadAllText(Program.FilePath);        //записываем весь текст файла в переменную для проверки на язык
+
+                if (!(!Regex.IsMatch(AllText, @"\p{IsCyrillic}")))          //проверка на язык
                 {
-                    MessageBox.Show("Please select file with english language!", "Error");
-                    Program.FilePath = null;
+                    MessageBox.Show("Please select file with english language!", "Error"); //если язык русский, то просим загрузить английский
+                    Program.FilePath = null;                                               //присваем null чтобы при повторном нажатии нас не пустило на 2 форму
                     return;
                 }
             }
@@ -50,26 +45,26 @@ namespace NooTranslateHelper
         {
             try
             {
-                if (Program.FilePath.Contains(':') || Program.FilePath.Contains('\\'))
+                if (Program.FilePath != null)                                //если с путем к файлу все норм то идем дальше
                 {
-                    Form2 form2 = new Form2();
+                    Form2 form2 = new Form2();                                         
                     Program.Context.MainForm = form2;
-                    form2.Show();
+                    form2.Show();                                            //открываем вторую форму
                     Close();
                 }  
             }
-            catch (Exception)
+            catch (NullReferenceException)
             {
                 MessageBox.Show("Please select file!", "Error");
             }
         }
-        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
+        private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e) //обработка загрузки файла через MenuStrip
         {
             pictureBox1_Click(sender, e);
         }
 
-        private void textBox1_MouseClick(object sender, MouseEventArgs e)
-        {
+        private void textBox1_MouseClick(object sender, MouseEventArgs e)     //при клике на textbox очищаем его и делаем цвет черным
+        {                                                                     //т.к. изначально текст серый и есть поясняющая надпись
             textBox1.Clear();
             textBox1.ForeColor = Color.Black;
         }
