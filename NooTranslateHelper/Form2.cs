@@ -91,5 +91,15 @@ namespace NooTranslateHelper
             }
             readText = readText.Where(x => x != null).ToArray();
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+            Label label = sender as Label;
+
+            if (label != null)
+            {
+                Clipboard.SetText(label.Text, TextDataFormat.UnicodeText);
+            }
+        }
     }
 }
