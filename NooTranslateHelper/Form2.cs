@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
-
+using System.Text.RegularExpressions;
 
 namespace NooTranslateHelper
 {
@@ -102,22 +102,37 @@ namespace NooTranslateHelper
 
         private void savePointToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OpenFileDialog ofd = new OpenFileDialog();
-            ofd.ShowDialog();
-            string TranslateFilePath = ofd.FileName;
-            string[] translateText = File.ReadAllLines(TranslateFilePath);
-            for (int i = 0; i < translateText.Length; i++)
+            try
             {
-                if (translateText[i] == "")
-                {
-                    translateText[i] = null;
-                }
-            }
-            translateText = translateText.Where(x => x != null).ToArray();
+                OpenFileDialog ofd = new OpenFileDialog();
+                ofd.ShowDialog();
+                string TranslateFilePath = ofd.FileName;
+                string AllText = File.ReadAllText(TranslateFilePath);
 
-            k = translateText.Length;
-            label1.Text = readText[k];
-            
+                if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}"))
+                {
+                    MessageBox.Show("Please select file with russian language!", "Error");
+                    TranslateFilePath = null;
+                    return;
+                }
+
+                string[] translateText = File.ReadAllLines(TranslateFilePath);
+                for (int i = 0; i < translateText.Length; i++)
+                {
+                    if (translateText[i] == "")
+                    {
+                        translateText[i] = null;
+                    }
+                }
+                translateText = translateText.Where(x => x != null).ToArray();
+
+                k = translateText.Length;
+                label1.Text = readText[k];
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File wasn't be chosen!", "Error");
+            }
         }
     }
 }

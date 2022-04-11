@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -28,8 +29,16 @@ namespace NooTranslateHelper
                 ofd.ShowDialog();
                 Program.RealFileName = ofd.SafeFileName;
                 Program.FileName = ofd.FileName.ToString();
-
                 Program.FilePath = Path.GetFullPath(Program.FileName);
+
+                string AllText = File.ReadAllText(Program.FilePath);
+
+                if (!(!Regex.IsMatch(AllText, @"\p{IsCyrillic}")))
+                {
+                    MessageBox.Show("Please select file with english language!", "Error");
+                    Program.FilePath = null;
+                    return;
+                }
             }
             catch (Exception)
             {
@@ -53,10 +62,7 @@ namespace NooTranslateHelper
             {
                 MessageBox.Show("Please select file!", "Error");
             }
-
-            
         }
-
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e)
         {
             pictureBox1_Click(sender, e);
