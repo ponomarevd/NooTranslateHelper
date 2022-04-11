@@ -94,16 +94,14 @@ namespace NooTranslateHelper
 
         private void label1_Click(object sender, EventArgs e)
         {
-            Label label = sender as Label;
-
-            if (label != null)
+            if (label1 != null)
             {
-                Clipboard.SetText(label.Text, TextDataFormat.UnicodeText);
+                Clipboard.SetText(label1.Text, TextDataFormat.UnicodeText);
             }
         }
         private void copyTextToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            label1_Click(sender, e);
+            label1_Click(sender, e);    
         }
     }
 }
