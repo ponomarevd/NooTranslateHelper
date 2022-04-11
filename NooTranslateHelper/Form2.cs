@@ -58,7 +58,7 @@ namespace NooTranslateHelper
             string NewFilePath = null;
             if (Program.FilePath.Contains(Program.RealFileName))
             {
-                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"RU_{Program.RealFileName}");
+                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}");
             }
 
             WriteToFile(NewFilePath);
@@ -100,6 +100,10 @@ namespace NooTranslateHelper
             {
                 Clipboard.SetText(label.Text, TextDataFormat.UnicodeText);
             }
+        }
+        private void copyTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            label1_Click(sender, e);
         }
     }
 }
