@@ -22,13 +22,19 @@ namespace NooTranslateHelper
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            ofd = new OpenFileDialog();
-            ofd.ShowDialog();
+            try
+            {
+                ofd = new OpenFileDialog();
+                ofd.ShowDialog();
+                Program.RealFileName = ofd.SafeFileName;
+                Program.FileName = ofd.FileName.ToString();
 
-            Program.RealFileName = ofd.SafeFileName;
-            Program.FileName = ofd.FileName.ToString();
-
-            Program.FilePath = Path.GetFullPath(Program.FileName);
+                Program.FilePath = Path.GetFullPath(Program.FileName);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File wasn't be chosen! Try again.", "Error");
+            }
         }
 
         private void roundButton1_Click(object sender, EventArgs e)
