@@ -55,5 +55,11 @@ namespace NooTranslateHelper
         {
             pictureBox1_Click(sender, e);
         }
+
+        private void textBox1_MouseClick(object sender, MouseEventArgs e)
+        {
+            textBox1.Clear();
+            textBox1.ForeColor = Color.Black;
+        }
     }
 }
