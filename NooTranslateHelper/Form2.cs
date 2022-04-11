@@ -109,9 +109,9 @@ namespace NooTranslateHelper
                 string TranslateFilePath = ofd.FileName;
                 string AllText = File.ReadAllText(TranslateFilePath);
 
-                if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}"))
+                if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}") || (!TranslateFilePath.Contains(Program.RealFileName) || AllText == null)) 
                 {
-                    MessageBox.Show("Please select file with russian language!", "Error");
+                    MessageBox.Show("Please select correct file", "Error");
                     TranslateFilePath = null;
                     return;
                 }

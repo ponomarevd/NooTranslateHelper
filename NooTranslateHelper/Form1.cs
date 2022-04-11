@@ -25,9 +25,9 @@ namespace NooTranslateHelper
         {
             try
             {
-                ofd = new OpenFileDialog();
-                ofd.ShowDialog();
-                Program.RealFileName = ofd.SafeFileName;
+                ofd = new OpenFileDialog(); 
+                ofd.ShowDialog();                                           //открываем окошко с выбором файла по клику на PictureBox
+                Program.RealFileName = ofd.SafeFileName;                    //получаем имя файла
                 Program.FileName = ofd.FileName.ToString();
                 Program.FilePath = Path.GetFullPath(Program.FileName);
 
