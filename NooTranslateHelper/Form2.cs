@@ -58,7 +58,7 @@ namespace NooTranslateHelper
             string NewFilePath = null;
             if (Program.FilePath.Contains(Program.RealFileName))
             {
-                NewFilePath = Program.FilePath.Replace(Program.RealFileName, "RU.txt");
+                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"RU_{Program.RealFileName}");
             }
 
             WriteToFile(NewFilePath);
