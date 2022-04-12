@@ -105,7 +105,7 @@ namespace NooTranslateHelper
                 string AllText = File.ReadAllText(TranslateFilePath);             //получаем весь текст для проверки на язык
 
                 if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}")                    //проверяем на язык (должен быть русский)
-                    || (!TranslateFilePath.Contains(Program.RealFileName)         //проверяем на содержание файла с переводом, имени оригинального файла, чтобы не открыть левый файл
+                    || (!TranslateFilePath.Contains(Program.RealFileName)         //проверяем на не содержание файла с переводом, имени оригинального файла, чтобы не открыть левый файл
                     || AllText == null))                                          //проверяем на null содержимое файла
                 {
                     MessageBox.Show("Please select correct file", "Error");       //если хоть одно из условий выполняется выводим ошибку
@@ -130,6 +130,20 @@ namespace NooTranslateHelper
             {
                 MessageBox.Show("File wasn't be chosen!", "Error");
             }
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            Program.CountOfClickOnGoogleTranslate++;
+            Form3 form3 = new Form3();
+            if (Program.CountOfClickOnGoogleTranslate > 1)
+            {
+                MessageBox.Show("Google Translate is already opened!", "Error");
+                Program.CountOfClickOnGoogleTranslate--;
+                return;
+            }
+            else    
+                form3.Show();
         }
     }
 }

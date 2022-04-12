@@ -10,6 +10,7 @@ namespace NooTranslateHelper
     {
         public static string RealFileName;
         public static string FilePath;
+        public static int CountOfClickOnGoogleTranslate = 0; 
         public static ApplicationContext Context { get; set; }
         [STAThread]
         static void Main()
