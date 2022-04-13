@@ -43,7 +43,7 @@ namespace NooTranslateHelper
                 translation += string.Format(" {0}", Convert.ToString(translationLineString.Current));
             }
             if (translation.Length > 1) { translation = translation.Substring(1); };
-            return translation;
+            return translation; 
         }
 
         private void roundButton1_Click(object sender, EventArgs e)
@@ -73,9 +73,18 @@ namespace NooTranslateHelper
                 textBox2.Clear();
             }
         }
-        private void textBox1_Click(object sender, EventArgs e)
+        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            textBox1.Clear();
+            if (e.KeyChar == (char)Keys.Escape)
+            {
+                textBox1.Clear();
+                e.Handled = true;
+            }
+            if (e.KeyChar == (char)Keys.Enter)
+            { 
+                roundButton1_Click(sender, e);
+                e.Handled = true;
+            }
         }
     }
 }
