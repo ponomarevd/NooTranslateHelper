@@ -3,6 +3,9 @@ using System.Drawing;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Net.Http;
+using System.Text;
+using System.Net;
 
 namespace NooTranslateHelper
 {
@@ -13,8 +16,12 @@ namespace NooTranslateHelper
             InitializeComponent();
         }
         OpenFileDialog ofd;                                                 //инициализируем объект класса OpenFileDialog, для дальнейшей загрузки файла
-
-
+        private void GetSubs(string url)
+        {
+            string urlDownload = $"https://savesubs.com/process?url={url}";
+            HttpClient client = new HttpClient();
+            string result = client.GetStringAsync(urlDownload).Result;
+        }
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
@@ -43,6 +50,7 @@ namespace NooTranslateHelper
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
+            GetSubs("https://savesubs.com/process?url=https://www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile");
             try
             {
                 if (Program.FilePath != null)                                //если с путем к файлу все норм то идем дальше
