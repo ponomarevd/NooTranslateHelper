@@ -50,7 +50,7 @@ namespace NooTranslateHelper
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
-            GetSubs("https://savesubs.com/process?url=https://www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile");
+            GetSubs("www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile");
             try
             {
                 if (Program.FilePath != null)                                //если с путем к файлу все норм то идем дальше
