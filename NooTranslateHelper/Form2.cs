@@ -5,29 +5,62 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
+using System.Collections.Generic;
 
 namespace NooTranslateHelper
 {
     public partial class Form2 : Form
     {
-        public StreamWriter Writer;                                         //инициализируем объект Writer, для дальнейшей записи в файлы
         string[] readText;                                                  //массив для текста из англ. субтитров
         int k = 0;                                                          //счетчик для добавления в label строки из субтитров по нажатию кнопки
+        List<string> TranslateArray = new List<string>();
         public Form2()
         {
             InitializeComponent();
         }
-        async void WriteToFile(string path)                                 //метод для записи переведенной строки в файл с переводом
+        /*private static string[] GetTranslationFile()
         {
-            Writer = new StreamWriter(path, true);
-            await Writer.WriteLineAsync($"{textBox1.Text}\n");
-            Writer.Close();
-        }
-
-        private void textBox1_MouseClick(object sender, MouseEventArgs e)   //при клике на textbox очищаем его и делаем цвет черным
-        {                                                                   //т.к. изначально текст серый и есть поясняющая надпись
-            textBox1.Clear();
-            textBox1.ForeColor = Color.Black;
+            try
+            {
+                string NewFilePath = null;
+                if (Program.FilePath.Contains(Program.RealFileName))
+                {
+                    NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}");
+                }
+                string[] TranslateText;
+                TranslateText = File.ReadAllLines(NewFilePath);
+                for (int i = 0; i < TranslateText.Length; i++)
+                {
+                    if (TranslateText[i] == "")
+                    {
+                        TranslateText[i] = null;
+                    }
+                }
+                TranslateText = TranslateText.Where(x => x != null).ToArray();
+                return TranslateText;
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("File wasn't be created");
+                return null;
+            }
+        }*/
+        private void StringWrap(string text, Label output)
+        {
+            if (text.Length > 43)
+            {
+                int LengthOfConversation = text.Length;
+                string FirstString = text.Substring(0, (LengthOfConversation / 2));
+                string LastString = null;
+                if (text.Contains(FirstString))
+                {
+                    LastString = text.Replace(FirstString, "");
+                }
+                output.Text = $"{FirstString}-\n{LastString}";
+            }
+            else
+                output.Text = readText[k];
         }
         private void roundButton1_Click(object sender, EventArgs e)
         {
@@ -46,16 +79,10 @@ namespace NooTranslateHelper
             }
             else 
             {
-                label1.Text = readText[k];                                  //иначе присваем в текст label строку из англ. субтитров
+                StringWrap(readText[k], label1);                            //иначе присваем в текст label строку из англ. субтитров
             }
 
-            string NewFilePath = null;                                      //объявляем переменную в которой будет путь к файлу с переводом
-            if (Program.FilePath.Contains(Program.RealFileName))            //если путь к файлу с переводом содержит свое же имя
-            {
-                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}"); //то путь к файлу с переводом будет таким же но с добавлением Translate_
-            }
-
-            WriteToFile(NewFilePath);                                       //используем метод записи в файл с переводом
+            TranslateArray.Add(textBox1.Text + "\n");
 
             textBox1.Clear();                                               //очищаем textbox
         }
@@ -72,7 +99,9 @@ namespace NooTranslateHelper
         private void Form2_Load(object sender, EventArgs e)
         {
             readText = File.ReadAllLines(Program.FilePath);                //записываем в массив каждую строку из файла с англ. субтитрами
-            label1.Text = readText[0];                                     //и по дефолту в label выводим самую первую строчку из файла с англ. субтитрами
+
+            StringWrap(readText[0], label1);
+
             for (int i = 1; i < readText.Length; i++)                   
             {
                 if (readText[i] == "")                                     //пробегаемся циклом и присваеваем null туда где есть пустая строка между строками
@@ -98,7 +127,7 @@ namespace NooTranslateHelper
         private void savePointToolStripMenuItem_Click(object sender, EventArgs e) //что-то вроде сейва данных, загружаем уже насколько-то 
         {                                                                         //переведенный текст и процесс перевода начинается с той строчки 
             try                                                                   //на которой в прошлый раз был сделан выход из программы
-            {                   
+            {
                 OpenFileDialog ofd = new OpenFileDialog();                           
                 ofd.ShowDialog();                                                 //открываем окошко с выбором файла                           
                 string TranslateFilePath = ofd.FileName;                          //получаем путь к файлу
@@ -113,17 +142,18 @@ namespace NooTranslateHelper
                     return;
                 }
 
-                string[] translateText = File.ReadAllLines(TranslateFilePath);    //записываем в массив строки из открытого файла с переводом
-                for (int i = 0; i < translateText.Length; i++)                    //удаляем из массива пустые строки между строками, содержащими перевод
+                TranslateArray.Clear();
+                TranslateArray = File.ReadAllLines(TranslateFilePath).ToList();    //записываем в массив строки из открытого файла с переводом
+                for (int i = 0; i < TranslateArray.Count; i++)                    //удаляем из массива пустые строки между строками, содержащими перевод
                 {
-                    if (translateText[i] == "")
+                    if (TranslateArray[i] == "")
                     {
-                        translateText[i] = null;
+                        TranslateArray[i] = null;
                     }
                 }
-                translateText = translateText.Where(x => x != null).ToArray();
+                TranslateArray = TranslateArray.Where(x => x != null).ToList();
 
-                k = translateText.Length;                                         //присваеваем в k индекс последнего элемента из файла с переводом
+                k = TranslateArray.Count;                                         //присваеваем в k индекс последнего элемента из файла с переводом
                 label1.Text = readText[k];                                        //и в label строку из файла с англ. субтитрами под этим же индексом
             }
             catch (Exception)
@@ -144,6 +174,69 @@ namespace NooTranslateHelper
             }
             else    
                 form3.Show();
+        }
+
+        private void roundButton2_Click(object sender, EventArgs e)
+        {
+            Process txt = new Process();
+            txt.StartInfo.FileName = "notepad.exe";
+            txt.StartInfo.Arguments = $@"{Program.FilePath}";
+            txt.Start();
+        }
+
+        private void textBox1_MouseHover(object sender, EventArgs e)
+        {
+            if (textBox1.Text.Contains("Enter the translation"))
+            {
+                textBox1.Clear();
+                textBox1.ForeColor = Color.Black;
+                textBox1.Focus();
+            }
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string NewFilePath = null;                                      //объявляем переменную в которой будет путь к файлу с переводом
+            if (Program.FilePath.Contains(Program.RealFileName))            //если путь к файлу с переводом содержит свое же имя
+            {
+                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}"); //то путь к файлу с переводом будет таким же но с добавлением Translate_
+            }
+            MessageBox.Show($"File will be saved to {NewFilePath}", "Save file");
+
+            using (StreamWriter writer = new StreamWriter(NewFilePath))
+            {
+                foreach (string str in TranslateArray)
+                {
+                    writer.WriteLine(str);
+                }
+            }
+        }
+
+        private void pictureBoxRight_Click(object sender, EventArgs e)
+        {
+            if (k < TranslateArray.Count - 1)
+            {
+                k++;
+                StringWrap(readText[k], label1);
+                textBox1.Text = TranslateArray[k];
+            }
+            else
+            {
+                return;
+            }
+        }
+        private void pictureBoxLeft_Click(object sender, EventArgs e)
+        {
+            if (k > 0)
+            {
+                k--;
+                StringWrap(readText[k], label1);
+                textBox1.Text = TranslateArray[k];
+            }
+            else
+            {
+                MessageBox.Show("It's a first conversation", "Error");
+            }
         }
     }
 }

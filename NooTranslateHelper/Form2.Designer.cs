@@ -36,11 +36,17 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.savePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.roundButton1 = new NooTranslateHelper.RoundButton();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxLeft = new System.Windows.Forms.PictureBox();
+            this.pictureBoxRight = new System.Windows.Forms.PictureBox();
+            this.roundButton2 = new NooTranslateHelper.RoundButton();
+            this.roundButton1 = new NooTranslateHelper.RoundButton();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLeft)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -74,20 +80,21 @@
             // 
             this.textBox1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.ForeColor = System.Drawing.Color.Gray;
-            this.textBox1.Location = new System.Drawing.Point(16, 99);
+            this.textBox1.Location = new System.Drawing.Point(16, 103);
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(471, 22);
             this.textBox1.TabIndex = 5;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "Enter the translation...";
-            this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
+            this.textBox1.MouseHover += new System.EventHandler(this.textBox1_MouseHover);
             // 
             // menuStrip1
             // 
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.savePointToolStripMenuItem});
+            this.savePointToolStripMenuItem,
+            this.saveToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(499, 24);
@@ -98,9 +105,74 @@
             // 
             this.savePointToolStripMenuItem.ForeColor = System.Drawing.Color.White;
             this.savePointToolStripMenuItem.Name = "savePointToolStripMenuItem";
-            this.savePointToolStripMenuItem.Size = new System.Drawing.Size(93, 20);
-            this.savePointToolStripMenuItem.Text = "Load translate";
+            this.savePointToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
+            this.savePointToolStripMenuItem.Text = "Load save";
             this.savePointToolStripMenuItem.Click += new System.EventHandler(this.savePointToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(43, 20);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 194);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(44, 39);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 8;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // pictureBoxLeft
+            // 
+            this.pictureBoxLeft.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLeft.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLeft.Image")));
+            this.pictureBoxLeft.Location = new System.Drawing.Point(16, 131);
+            this.pictureBoxLeft.Name = "pictureBoxLeft";
+            this.pictureBoxLeft.Size = new System.Drawing.Size(40, 26);
+            this.pictureBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxLeft.TabIndex = 10;
+            this.pictureBoxLeft.TabStop = false;
+            this.pictureBoxLeft.Click += new System.EventHandler(this.pictureBoxLeft_Click);
+            // 
+            // pictureBoxRight
+            // 
+            this.pictureBoxRight.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxRight.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxRight.Image")));
+            this.pictureBoxRight.Location = new System.Drawing.Point(62, 131);
+            this.pictureBoxRight.Name = "pictureBoxRight";
+            this.pictureBoxRight.Size = new System.Drawing.Size(40, 26);
+            this.pictureBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBoxRight.TabIndex = 11;
+            this.pictureBoxRight.TabStop = false;
+            this.pictureBoxRight.Click += new System.EventHandler(this.pictureBoxRight_Click);
+            // 
+            // roundButton2
+            // 
+            this.roundButton2.BackColor = System.Drawing.Color.Aquamarine;
+            this.roundButton2.BackColor2 = System.Drawing.Color.LightBlue;
+            this.roundButton2.ButtonBorderColor = System.Drawing.Color.Transparent;
+            this.roundButton2.ButtonHighlightColor = System.Drawing.Color.Orange;
+            this.roundButton2.ButtonHighlightColor2 = System.Drawing.Color.OrangeRed;
+            this.roundButton2.ButtonHighlightForeColor = System.Drawing.Color.Black;
+            this.roundButton2.ButtonPressedColor = System.Drawing.Color.Red;
+            this.roundButton2.ButtonPressedColor2 = System.Drawing.Color.Maroon;
+            this.roundButton2.ButtonPressedForeColor = System.Drawing.Color.White;
+            this.roundButton2.ButtonRoundRadius = 30;
+            this.roundButton2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roundButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.roundButton2.Location = new System.Drawing.Point(378, 199);
+            this.roundButton2.Name = "roundButton2";
+            this.roundButton2.Size = new System.Drawing.Size(109, 40);
+            this.roundButton2.TabIndex = 9;
+            this.roundButton2.Text = "SHOW FILE";
+            this.roundButton2.Click += new System.EventHandler(this.roundButton2_Click);
             // 
             // roundButton1
             // 
@@ -120,20 +192,8 @@
             this.roundButton1.Name = "roundButton1";
             this.roundButton1.Size = new System.Drawing.Size(175, 40);
             this.roundButton1.TabIndex = 6;
-            this.roundButton1.Text = "SEND TO DOCUMENT";
+            this.roundButton1.Text = "NEXT";
             this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(12, 194);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(44, 39);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 8;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // Form2
             // 
@@ -141,6 +201,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(499, 245);
+            this.Controls.Add(this.pictureBoxRight);
+            this.Controls.Add(this.pictureBoxLeft);
+            this.Controls.Add(this.roundButton2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.roundButton1);
@@ -158,6 +221,8 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLeft)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,5 +238,9 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem savePointToolStripMenuItem;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private RoundButton roundButton2;
+        private System.Windows.Forms.PictureBox pictureBoxLeft;
+        private System.Windows.Forms.PictureBox pictureBoxRight;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
     }
 }
