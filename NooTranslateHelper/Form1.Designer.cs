@@ -138,7 +138,7 @@
             this.textBox1.TabIndex = 6;
             this.textBox1.TabStop = false;
             this.textBox1.Text = "Paste URL here...";
-            this.textBox1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseClick);
+            this.textBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.textBox1_MouseMove);
             // 
             // Form1
             // 

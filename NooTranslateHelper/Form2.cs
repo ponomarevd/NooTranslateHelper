@@ -268,5 +268,16 @@ namespace NooTranslateHelper
         {
             pictureBoxGoogleTranslate.Image = Image.FromFile("Translate_logo.max-500x500.png");
         }
+
+        private void roundButton1_Click(object sender, EventArgs e) //пофиксить
+        {
+            if (TranslateArray != null && TranslateArray[0].Trim() != String.Empty)
+            {
+                saveToolStripMenuItem_Click(sender, e);
+                Application.Restart();
+            }
+            else
+                Application.Restart();
+        }
     }
 }

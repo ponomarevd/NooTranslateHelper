@@ -40,6 +40,7 @@
             this.pictureBoxGoogleTranslate = new System.Windows.Forms.PictureBox();
             this.pictureBoxLeft = new System.Windows.Forms.PictureBox();
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
+            this.roundButton1 = new NooTranslateHelper.RoundButton();
             this.roundButtonShowFile = new NooTranslateHelper.RoundButton();
             this.roundButtonNext = new NooTranslateHelper.RoundButton();
             this.contextMenuStrip1.SuspendLayout();
@@ -160,9 +161,30 @@
             this.pictureBoxRight.MouseLeave += new System.EventHandler(this.pictureBoxRight_MouseLeave);
             this.pictureBoxRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxRight_MouseMove);
             // 
+            // roundButton1
+            // 
+            this.roundButton1.BackColor = System.Drawing.Color.IndianRed;
+            this.roundButton1.BackColor2 = System.Drawing.Color.IndianRed;
+            this.roundButton1.ButtonBorderColor = System.Drawing.Color.Transparent;
+            this.roundButton1.ButtonHighlightColor = System.Drawing.Color.Orange;
+            this.roundButton1.ButtonHighlightColor2 = System.Drawing.Color.OrangeRed;
+            this.roundButton1.ButtonHighlightForeColor = System.Drawing.Color.Black;
+            this.roundButton1.ButtonPressedColor = System.Drawing.Color.Red;
+            this.roundButton1.ButtonPressedColor2 = System.Drawing.Color.Maroon;
+            this.roundButton1.ButtonPressedForeColor = System.Drawing.Color.White;
+            this.roundButton1.ButtonRoundRadius = 30;
+            this.roundButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.roundButton1.ForeColor = System.Drawing.Color.White;
+            this.roundButton1.Location = new System.Drawing.Point(410, 194);
+            this.roundButton1.Name = "roundButton1";
+            this.roundButton1.Size = new System.Drawing.Size(77, 40);
+            this.roundButton1.TabIndex = 12;
+            this.roundButton1.Text = "BACK";
+            this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
+            // 
             // roundButtonShowFile
             // 
-            this.roundButtonShowFile.BackColor = System.Drawing.Color.Aquamarine;
+            this.roundButtonShowFile.BackColor = System.Drawing.Color.RoyalBlue;
             this.roundButtonShowFile.BackColor2 = System.Drawing.Color.LightBlue;
             this.roundButtonShowFile.ButtonBorderColor = System.Drawing.Color.Transparent;
             this.roundButtonShowFile.ButtonHighlightColor = System.Drawing.Color.Orange;
@@ -173,10 +195,10 @@
             this.roundButtonShowFile.ButtonPressedForeColor = System.Drawing.Color.White;
             this.roundButtonShowFile.ButtonRoundRadius = 30;
             this.roundButtonShowFile.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundButtonShowFile.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.roundButtonShowFile.Location = new System.Drawing.Point(378, 199);
+            this.roundButtonShowFile.ForeColor = System.Drawing.Color.White;
+            this.roundButtonShowFile.Location = new System.Drawing.Point(62, 194);
             this.roundButtonShowFile.Name = "roundButtonShowFile";
-            this.roundButtonShowFile.Size = new System.Drawing.Size(109, 40);
+            this.roundButtonShowFile.Size = new System.Drawing.Size(97, 40);
             this.roundButtonShowFile.TabIndex = 9;
             this.roundButtonShowFile.Text = "SHOW FILE";
             this.roundButtonShowFile.Click += new System.EventHandler(this.roundButtonShowFile_Click);
@@ -208,6 +230,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(499, 245);
+            this.Controls.Add(this.roundButton1);
             this.Controls.Add(this.pictureBoxRight);
             this.Controls.Add(this.pictureBoxLeft);
             this.Controls.Add(this.roundButtonShowFile);
@@ -249,5 +272,6 @@
         private System.Windows.Forms.PictureBox pictureBoxLeft;
         private System.Windows.Forms.PictureBox pictureBoxRight;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        private RoundButton roundButton1;
     }
 }

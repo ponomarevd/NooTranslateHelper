@@ -70,21 +70,22 @@ namespace NooTranslateHelper
         {
             pictureBox1_Click(sender, e);
         }
-
-        private void textBox1_MouseClick(object sender, MouseEventArgs e)     //при клике на textbox очищаем его и делаем цвет черным
-        {                                                                     //т.к. изначально текст серый и есть поясняющая надпись
-            textBox1.Clear();
-            textBox1.ForeColor = Color.Black;
-        }
-
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
+            textBox1.Text = "Paste URL here...";
+            textBox1.ForeColor = Color.Gray;
             pictureBox1.Image = Image.FromFile("document-download-outline_moved.png");
         }
 
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             pictureBox1.Image = Image.FromFile("document-download-outline.png");
+        }
+
+        private void textBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            textBox1.Clear();
+            textBox1.ForeColor = Color.Black;
         }
     }
 }
