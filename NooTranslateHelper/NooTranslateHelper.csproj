@@ -83,6 +83,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Habra\HabraParser.cs" />
+    <Compile Include="Core\Habra\HabraSettings.cs" />
+    <Compile Include="Core\HtmlLoader.cs" />
+    <Compile Include="Core\IParser.cs" />
+    <Compile Include="Core\IParserSettings.cs" />
+    <Compile Include="Core\ParserWorker.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

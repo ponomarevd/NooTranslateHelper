@@ -16,12 +16,14 @@ namespace NooTranslateHelper
             InitializeComponent();
         }
         OpenFileDialog ofd;                                                 //инициализируем объект класса OpenFileDialog, для дальнейшей загрузки файла
+
         private void GetSubs(string url)
         {
             string urlDownload = $"https://savesubs.com/process?url={url}";
             HttpClient client = new HttpClient();
             string result = client.GetStringAsync(urlDownload).Result;
         }
+
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
@@ -50,7 +52,7 @@ namespace NooTranslateHelper
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
-            GetSubs("www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile");
+            GetSubs("www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile"); // передаем в метод label.Text
             try
             {
                 if (Program.FilePath != null)                                //если с путем к файлу все норм то идем дальше
