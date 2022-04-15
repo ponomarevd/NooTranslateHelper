@@ -15,8 +15,7 @@ namespace NooTranslateHelper
         string[] readText;                                                                                              
         List<string> TranslateArray = new List<string>();
         //bool IsTextWasChanged = false;
-        string tempRight = null;
-        string tempLeft = null;
+        string temp = null;
         int k = 0;
         public Form2()
         {
@@ -201,9 +200,9 @@ namespace NooTranslateHelper
                 k++;
                 StringWrap(readText[k], labelSubsText);
                 textBoxTranslateText.Text = TranslateArray[k];
-                if (tempRight != TranslateArray[k-1])
+                if (temp != TranslateArray[k-1])
                 {
-                    TranslateArray[k-1] = tempRight;
+                    TranslateArray[k-1] = temp;
                 }
             }
             else
@@ -237,15 +236,37 @@ namespace NooTranslateHelper
 
         private void pictureBoxRight_MouseMove(object sender, MouseEventArgs e)
         {
-            tempRight = textBoxTranslateText.Text;
-            if (tempRight.Contains("\n"))
-                tempRight = tempRight.Replace("\n", "") + "\n";
+            pictureBoxRight.Image = Image.FromFile("right_moved.png");
+            temp = textBoxTranslateText.Text;
+            if (temp.Contains("\n"))
+                temp = temp.Replace("\n", "") + "\n";
         }
         private void pictureBoxLeft_MouseMove(object sender, MouseEventArgs e)
         {
-            tempLeft = textBoxTranslateText.Text;
-            if (tempLeft.Contains("\n"))
-                tempLeft = tempLeft.Replace("\n", "") + "\n";
+            pictureBoxLeft.Image = Image.FromFile("left_moved.png");
+            temp = textBoxTranslateText.Text;
+            if (temp.Contains("\n"))
+                temp = temp.Replace("\n", "") + "\n";
+        }
+
+        private void pictureBoxRight_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxRight.Image = Image.FromFile("right.png"); 
+        }
+
+        private void pictureBoxLeft_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxLeft.Image = Image.FromFile("left.png");
+        }
+
+        private void pictureBoxGoogleTranslate_MouseMove(object sender, MouseEventArgs e)
+        {
+            pictureBoxGoogleTranslate.Image = Image.FromFile("Translate_logo_moved.png");
+        }
+
+        private void pictureBoxGoogleTranslate_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBoxGoogleTranslate.Image = Image.FromFile("Translate_logo.max-500x500.png");
         }
     }
 }

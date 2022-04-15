@@ -76,5 +76,15 @@ namespace NooTranslateHelper
             textBox1.Clear();
             textBox1.ForeColor = Color.Black;
         }
+
+        private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile("document-download-outline_moved.png");
+        }
+
+        private void pictureBox1_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox1.Image = Image.FromFile("document-download-outline.png");
+        }
     }
 }

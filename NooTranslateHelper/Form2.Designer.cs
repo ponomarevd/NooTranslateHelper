@@ -129,6 +129,8 @@
             this.pictureBoxGoogleTranslate.TabIndex = 8;
             this.pictureBoxGoogleTranslate.TabStop = false;
             this.pictureBoxGoogleTranslate.Click += new System.EventHandler(this.pictureBoxGoogleTranslate_Click);
+            this.pictureBoxGoogleTranslate.MouseLeave += new System.EventHandler(this.pictureBoxGoogleTranslate_MouseLeave);
+            this.pictureBoxGoogleTranslate.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxGoogleTranslate_MouseMove);
             // 
             // pictureBoxLeft
             // 
@@ -141,6 +143,7 @@
             this.pictureBoxLeft.TabIndex = 10;
             this.pictureBoxLeft.TabStop = false;
             this.pictureBoxLeft.Click += new System.EventHandler(this.pictureBoxLeft_Click);
+            this.pictureBoxLeft.MouseLeave += new System.EventHandler(this.pictureBoxLeft_MouseLeave);
             this.pictureBoxLeft.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxLeft_MouseMove);
             // 
             // pictureBoxRight
@@ -154,6 +157,7 @@
             this.pictureBoxRight.TabIndex = 11;
             this.pictureBoxRight.TabStop = false;
             this.pictureBoxRight.Click += new System.EventHandler(this.pictureBoxRight_Click);
+            this.pictureBoxRight.MouseLeave += new System.EventHandler(this.pictureBoxRight_MouseLeave);
             this.pictureBoxRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxRight_MouseMove);
             // 
             // roundButtonShowFile
