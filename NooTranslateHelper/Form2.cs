@@ -12,9 +12,12 @@ namespace NooTranslateHelper
 {
     public partial class Form2 : Form
     {
-        string[] readText;                                                  //массив для текста из англ. субтитров
-        int k = 0;                                                          //счетчик для добавления в label строки из субтитров по нажатию кнопки
+        string[] readText;                                                                                              
         List<string> TranslateArray = new List<string>();
+        //bool IsTextWasChanged = false;
+        string tempRight = null;
+        string tempLeft = null;
+        int k = 0;
         public Form2()
         {
             InitializeComponent();
@@ -62,99 +65,91 @@ namespace NooTranslateHelper
             else
                 output.Text = readText[k];
         }
-        private void roundButton1_Click(object sender, EventArgs e)
+        private void roundButtonNext_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Trim() == String.Empty || textBox1.Text == "Enter the translation...") //проверка на пустоту строки и дефолтной надписи
+            if (textBoxTranslateText.Text.Trim() == String.Empty || textBoxTranslateText.Text == "Enter the translation...") 
             {
-                textBox1.Clear();
+                textBoxTranslateText.Clear();
                 MessageBox.Show("Please write the translation", "Error");
                 return;
             }
 
-            k++;                                                            //инкрементим счетчик                                                               
-            if (k >= readText.Length)                                       //если счетчик равен количеству строк в массиве
+            k++;                                                                                                              
+            if (k >= readText.Length)                                      
             {
-                MessageBox.Show("It's all!", "Good job");                   //то выводим MessageBox
-                Application.Restart();                                      //и рестартим
+                MessageBox.Show("It's all!", "Good job");                  
+                Application.Restart();                                    
             }
             else 
-            {
-                StringWrap(readText[k], label1);                            //иначе присваем в текст label строку из англ. субтитров
-            }
+                StringWrap(readText[k], labelSubsText);                           
 
-            TranslateArray.Add(textBox1.Text + "\n");
+            TranslateArray.Add(textBoxTranslateText.Text + "\n");
 
-            textBox1.Clear();                                               //очищаем textbox
+            textBoxTranslateText.Clear();                                               
         }
 
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e) //обработка нажатия Enter по textbox
+        private void textBoxTranslateText_KeyPress(object sender, KeyPressEventArgs e) 
         {
             if (e.KeyChar == (char)Keys.Enter)
             {
-                roundButton1_Click(sender, e);
+                roundButtonNext_Click(sender, e);
                 e.Handled = true;
             }
         }
 
         private void Form2_Load(object sender, EventArgs e)
         {
-            readText = File.ReadAllLines(Program.FilePath);                //записываем в массив каждую строку из файла с англ. субтитрами
+            readText = File.ReadAllLines(Program.FilePath);               
 
-            StringWrap(readText[0], label1);
+            StringWrap(readText[0], labelSubsText);
 
             for (int i = 1; i < readText.Length; i++)                   
             {
-                if (readText[i] == "")                                     //пробегаемся циклом и присваеваем null туда где есть пустая строка между строками
-                {
+                if (readText[i] == "")                                     
                     readText[i] = null;                                     
-                }
             }
-            readText = readText.Where(x => x != null).ToArray();           //перезаписываем массив удаляя из него все пустые строки 
-        }                                                                  //P.S. для того чтобы потом когда мы выводим строку в label, не было пустого значения
+            readText = readText.Where(x => x != null).ToArray();           
+        }                                                                  
 
-        private void label1_Click(object sender, EventArgs e)              //копирование строки по нажатию на label для удобного переноса в переводчик в дальнейшем
+        private void labelSubsText_Click(object sender, EventArgs e)              
         {
-            if (label1 != null)
-            {
-                Clipboard.SetText(label1.Text, TextDataFormat.UnicodeText);
-            }
+            if (labelSubsText != null)
+                Clipboard.SetText(labelSubsText.Text, TextDataFormat.UnicodeText);
         }
-        private void copyTextToolStripMenuItem_Click(object sender, EventArgs e) //копирование строки по нажатию на ContextStripMenu "Copy" у label'а 
+        private void copyTextToolStripMenuItem_Click(object sender, EventArgs e) 
         {
-            label1_Click(sender, e);    
+            labelSubsText_Click(sender, e);    
         }
 
-        private void savePointToolStripMenuItem_Click(object sender, EventArgs e) //что-то вроде сейва данных, загружаем уже насколько-то 
-        {                                                                         //переведенный текст и процесс перевода начинается с той строчки 
-            try                                                                   //на которой в прошлый раз был сделан выход из программы
+        private void savePointToolStripMenuItem_Click(object sender, EventArgs e) 
+        {                                                                         
+            try                                                                   
             {
                 OpenFileDialog ofd = new OpenFileDialog();                           
-                ofd.ShowDialog();                                                 //открываем окошко с выбором файла                           
-                string TranslateFilePath = ofd.FileName;                          //получаем путь к файлу
-                string AllText = File.ReadAllText(TranslateFilePath);             //получаем весь текст для проверки на язык
+                ofd.ShowDialog();                                                    
+                string TranslateFilePath = ofd.FileName;                         
+                string AllText = File.ReadAllText(TranslateFilePath);           
 
-                if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}")                    //проверяем на язык (должен быть русский)
-                    || (!TranslateFilePath.Contains(Program.RealFileName)         //проверяем на не содержание файла с переводом, имени оригинального файла, чтобы не открыть левый файл
-                    || AllText == null))                                          //проверяем на null содержимое файла
+                if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}")                    
+                    || (!TranslateFilePath.Contains(Program.RealFileName)         
+                    || AllText == null))                                          
                 {
-                    MessageBox.Show("Please select correct file", "Error");       //если хоть одно из условий выполняется выводим ошибку
-                    TranslateFilePath = null;                                     //присваеваем в путь к файлу null чтобы программа дальше не выполнялась
+                    MessageBox.Show("Please select correct file", "Error");       
+                    TranslateFilePath = null;                                     
                     return;
                 }
 
                 TranslateArray.Clear();
-                TranslateArray = File.ReadAllLines(TranslateFilePath).ToList();    //записываем в массив строки из открытого файла с переводом
-                for (int i = 0; i < TranslateArray.Count; i++)                    //удаляем из массива пустые строки между строками, содержащими перевод
+                TranslateArray = File.ReadAllLines(TranslateFilePath).ToList();    
+                for (int i = 0; i < TranslateArray.Count; i++)                    
                 {
                     if (TranslateArray[i] == "")
-                    {
                         TranslateArray[i] = null;
-                    }
                 }
                 TranslateArray = TranslateArray.Where(x => x != null).ToList();
 
-                k = TranslateArray.Count;                                         //присваеваем в k индекс последнего элемента из файла с переводом
-                label1.Text = readText[k];                                        //и в label строку из файла с англ. субтитрами под этим же индексом
+                k = TranslateArray.Count;                                         
+                labelSubsText.Text = readText[k];                                        
             }
             catch (Exception)
             {
@@ -162,7 +157,7 @@ namespace NooTranslateHelper
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBoxGoogleTranslate_Click(object sender, EventArgs e)
         {
             Program.CountOfClickOnGoogleTranslate++;
             Form3 form3 = new Form3();
@@ -176,67 +171,81 @@ namespace NooTranslateHelper
                 form3.Show();
         }
 
-        private void roundButton2_Click(object sender, EventArgs e)
+        private void roundButtonShowFile_Click(object sender, EventArgs e)
         {
             Process txt = new Process();
             txt.StartInfo.FileName = "notepad.exe";
             txt.StartInfo.Arguments = $@"{Program.FilePath}";
             txt.Start();
         }
-
-        private void textBox1_MouseHover(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Contains("Enter the translation"))
-            {
-                textBox1.Clear();
-                textBox1.ForeColor = Color.Black;
-                textBox1.Focus();
-            }
-        }
-
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string NewFilePath = null;                                      //объявляем переменную в которой будет путь к файлу с переводом
-            if (Program.FilePath.Contains(Program.RealFileName))            //если путь к файлу с переводом содержит свое же имя
-            {
-                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}"); //то путь к файлу с переводом будет таким же но с добавлением Translate_
-            }
+            string NewFilePath = null;      
+            
+            if (Program.FilePath.Contains(Program.RealFileName))          
+                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}"); 
+
             MessageBox.Show($"File will be saved to {NewFilePath}", "Save file");
 
             using (StreamWriter writer = new StreamWriter(NewFilePath))
             {
                 foreach (string str in TranslateArray)
-                {
                     writer.WriteLine(str);
-                }
             }
         }
 
         private void pictureBoxRight_Click(object sender, EventArgs e)
         {
-            if (k < TranslateArray.Count - 1)
+            if (k < TranslateArray.Count-1)
             {
                 k++;
-                StringWrap(readText[k], label1);
-                textBox1.Text = TranslateArray[k];
+                StringWrap(readText[k], labelSubsText);
+                textBoxTranslateText.Text = TranslateArray[k];
+                if (tempRight != TranslateArray[k-1])
+                {
+                    TranslateArray[k-1] = tempRight;
+                }
             }
             else
-            {
                 return;
-            }
         }
         private void pictureBoxLeft_Click(object sender, EventArgs e)
         {
             if (k > 0)
             {
                 k--;
-                StringWrap(readText[k], label1);
-                textBox1.Text = TranslateArray[k];
+                StringWrap(readText[k], labelSubsText);
+                textBoxTranslateText.Text = TranslateArray[k];
             }
             else
-            {
                 MessageBox.Show("It's a first conversation", "Error");
+        }
+
+        private void textBoxTranslateText_TextChanged(object sender, EventArgs e)
+        {
+            //IsTextWasChanged = true;
+        }
+        private void textBoxTranslateText_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (textBoxTranslateText.Text.Contains("Enter the translation"))
+            {
+                textBoxTranslateText.Clear();
+                textBoxTranslateText.ForeColor = Color.Black;
+                textBoxTranslateText.Focus();
             }
+        }
+
+        private void pictureBoxRight_MouseMove(object sender, MouseEventArgs e)
+        {
+            tempRight = textBoxTranslateText.Text;
+            if (tempRight.Contains("\n"))
+                tempRight = tempRight.Replace("\n", "") + "\n";
+        }
+        private void pictureBoxLeft_MouseMove(object sender, MouseEventArgs e)
+        {
+            tempLeft = textBoxTranslateText.Text;
+            if (tempLeft.Contains("\n"))
+                tempLeft = tempLeft.Replace("\n", "") + "\n";
         }
     }
 }
