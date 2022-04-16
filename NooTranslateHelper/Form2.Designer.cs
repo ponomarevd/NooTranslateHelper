@@ -109,7 +109,7 @@
             this.savePointToolStripMenuItem.Name = "savePointToolStripMenuItem";
             this.savePointToolStripMenuItem.Size = new System.Drawing.Size(71, 20);
             this.savePointToolStripMenuItem.Text = "Load save";
-            this.savePointToolStripMenuItem.Click += new System.EventHandler(this.savePointToolStripMenuItem_Click);
+            this.savePointToolStripMenuItem.Click += new System.EventHandler(this.loadSaveToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 

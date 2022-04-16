@@ -72,11 +72,9 @@ namespace NooTranslateHelper
         }
         private void pictureBox1_MouseMove(object sender, MouseEventArgs e)
         {
-            textBox1.Text = "Paste URL here...";
-            textBox1.ForeColor = Color.Gray;
+
             pictureBox1.Image = Image.FromFile("document-download-outline_moved.png");
         }
-
         private void pictureBox1_MouseLeave(object sender, EventArgs e)
         {
             pictureBox1.Image = Image.FromFile("document-download-outline.png");
@@ -88,6 +86,16 @@ namespace NooTranslateHelper
             {
                 textBox1.Clear();
                 textBox1.ForeColor = Color.Black;
+            }
+        }
+
+        private void textBox1_MouseLeave(object sender, EventArgs e)
+        {
+            if (!(textBox1.Text.Contains("http")) || !(textBox1.Text.Contains("youtube")))
+            {
+                this.ActiveControl = pictureBox1;
+                textBox1.Text = "Paste URL here...";
+                textBox1.ForeColor = Color.Gray;
             }
         }
     }
