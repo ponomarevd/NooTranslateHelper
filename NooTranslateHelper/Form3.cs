@@ -8,7 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
 
@@ -20,12 +20,11 @@ namespace NooTranslateHelper
         {
             InitializeComponent();
         }
+        Thread thread;
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.CountOfClickOnGoogleTranslate--;
-        }
-        public void DownSub(string Url)
-        {
+            thread.Abort();
         }
         public string TranslateText(string input)
         {
@@ -45,44 +44,41 @@ namespace NooTranslateHelper
             if (translation.Length > 1) { translation = translation.Substring(1); };
             return translation; 
         }
-
-        private void roundButton1_Click(object sender, EventArgs e)
+        private void textBox1_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                if (textBox1.Text.Trim() == String.Empty)
+                if (textBox1.Text.Trim() == string.Empty)
+                    textBox2.Text = string.Empty;
+                else
                 {
-                    return;
-                }
-                else 
-                {
-                    string result = TranslateText(textBox1.Text);
-                    textBox2.Text = result;
+                    thread = new Thread(() => 
+                    {
+                        string result = TranslateText(textBox1.Text);
+                        textBox2.Text = result;
+                    });
+                    thread.Start(); 
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"{ex}", "Error");
             }
-            
-        }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Trim() == string.Empty)
-            {
-                textBox2.Clear();
-            }
         }
         private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == (char)Keys.Escape)
+            if (e.KeyChar == (char)Keys.LShiftKey)
             {
                 textBox1.Clear();
                 e.Handled = true;
             }
-            if (e.KeyChar == (char)Keys.Enter)
-            { 
-                roundButton1_Click(sender, e);
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Shift)
+            {
+                textBox1.Clear();
                 e.Handled = true;
             }
         }

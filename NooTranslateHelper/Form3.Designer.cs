@@ -34,7 +34,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.roundButton1 = new NooTranslateHelper.RoundButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,6 +48,7 @@
             this.textBox1.Size = new System.Drawing.Size(288, 180);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyDown);
             this.textBox1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textBox1_KeyPress);
             // 
             // textBox2
@@ -59,6 +59,7 @@
             this.textBox2.Location = new System.Drawing.Point(363, 52);
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
             this.textBox2.Size = new System.Drawing.Size(288, 180);
             this.textBox2.TabIndex = 1;
             // 
@@ -97,42 +98,20 @@
             this.pictureBox1.TabIndex = 9;
             this.pictureBox1.TabStop = false;
             // 
-            // roundButton1
-            // 
-            this.roundButton1.BackColor = System.Drawing.Color.Aquamarine;
-            this.roundButton1.BackColor2 = System.Drawing.Color.LightBlue;
-            this.roundButton1.ButtonBorderColor = System.Drawing.Color.Transparent;
-            this.roundButton1.ButtonHighlightColor = System.Drawing.Color.Orange;
-            this.roundButton1.ButtonHighlightColor2 = System.Drawing.Color.OrangeRed;
-            this.roundButton1.ButtonHighlightForeColor = System.Drawing.Color.Black;
-            this.roundButton1.ButtonPressedColor = System.Drawing.Color.Red;
-            this.roundButton1.ButtonPressedColor2 = System.Drawing.Color.Maroon;
-            this.roundButton1.ButtonPressedForeColor = System.Drawing.Color.White;
-            this.roundButton1.ButtonRoundRadius = 30;
-            this.roundButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.roundButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.roundButton1.Location = new System.Drawing.Point(246, 271);
-            this.roundButton1.Name = "roundButton1";
-            this.roundButton1.Size = new System.Drawing.Size(175, 40);
-            this.roundButton1.TabIndex = 7;
-            this.roundButton1.Text = "TRANSLATE";
-            this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
-            // 
             // Form3
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(663, 341);
+            this.ClientSize = new System.Drawing.Size(663, 279);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.roundButton1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximumSize = new System.Drawing.Size(679, 380);
-            this.MinimumSize = new System.Drawing.Size(679, 380);
+            this.MaximumSize = new System.Drawing.Size(679, 318);
+            this.MinimumSize = new System.Drawing.Size(679, 318);
             this.Name = "Form3";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Google Translate";
@@ -149,7 +128,6 @@
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private RoundButton roundButton1;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
