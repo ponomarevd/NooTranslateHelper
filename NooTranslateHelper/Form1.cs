@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using System.Net.Http;
 using System.Text;
 using System.Net;
+using System.Threading;
 
 namespace NooTranslateHelper
 {
@@ -16,12 +17,35 @@ namespace NooTranslateHelper
             InitializeComponent();
         }
         OpenFileDialog ofd;                                                 //инициализируем объект класса OpenFileDialog, для дальнейшей загрузки файла
+        private static void getBetween(string strSource, string strStart, string strEnd)
+        {
+            int Start, End;
+
+            while (strSource.Contains(strStart) && strSource.Contains(strEnd))
+            {
+                Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+                End = strSource.IndexOf(strEnd, Start);
+                Console.WriteLine(strSource.Substring(Start, End - Start));
+                strSource = strSource.Substring(End);
+            }
+
+
+        }
 
         private void GetSubs(string url)
         {
             string urlDownload = $"https://savesubs.com/process?url={url}";
-            HttpClient client = new HttpClient();
-            string result = client.GetStringAsync(urlDownload).Result;
+            WebClient client = new WebClient();
+            Stream stream = client.OpenRead(urlDownload); // все работает и мы готовы к парсингу ссылки, но
+            StreamReader sr = new StreamReader(stream);   // парсится страница до загрузки файла, т.к мы видим "Please wait..." в HTML коде
+            string L, M = "";
+            while ((L = sr.ReadLine()) != null)
+            {
+                M += L;
+            }
+            stream.Close();
+            sr.Close();
+            getBetween(M, "<a href=\"", "\"");
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
