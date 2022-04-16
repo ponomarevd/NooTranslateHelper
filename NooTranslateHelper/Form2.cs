@@ -14,7 +14,6 @@ namespace NooTranslateHelper
     {
         string[] readText;                                                                                              
         List<string> TranslateArray = new List<string>();
-        //bool IsTextWasChanged = false;
         string temp = null;
         int k = 0;
         public Form2()
@@ -82,7 +81,7 @@ namespace NooTranslateHelper
             else 
                 StringWrap(readText[k], labelSubsText);                           
 
-            TranslateArray.Add(textBoxTranslateText.Text + "\n");
+            TranslateArray.Add(textBoxTranslateText.Text);
 
             textBoxTranslateText.Clear();                                               
         }
@@ -147,8 +146,8 @@ namespace NooTranslateHelper
                 }
                 TranslateArray = TranslateArray.Where(x => x != null).ToList();
 
-                k = TranslateArray.Count;                                         
-                labelSubsText.Text = readText[k];                                        
+                k = TranslateArray.Count;
+                StringWrap(readText[k], labelSubsText);                                        
             }
             catch (Exception)
             {
@@ -179,6 +178,12 @@ namespace NooTranslateHelper
         }
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            /*for (int i = 0; i < (TranslateArray.Count * 2); i++)
+            {
+                temp = TranslateArray[i+1];
+                TranslateArray[i + 1] = "";
+                TranslateArray[i+2] = temp;
+            }*/
             string NewFilePath = null;      
             
             if (Program.FilePath.Contains(Program.RealFileName))          
@@ -195,6 +200,13 @@ namespace NooTranslateHelper
 
         private void pictureBoxRight_Click(object sender, EventArgs e)
         {
+            if (textBoxTranslateText.Text.Trim() == String.Empty || textBoxTranslateText.Text == "Enter the translation...")
+            {
+                textBoxTranslateText.Clear();
+                MessageBox.Show("Please write the translation", "Error");
+                return;
+            }
+
             if (k < TranslateArray.Count-1)
             {
                 k++;
@@ -215,14 +227,20 @@ namespace NooTranslateHelper
                 k--;
                 StringWrap(readText[k], labelSubsText);
                 textBoxTranslateText.Text = TranslateArray[k];
+                if (temp != TranslateArray[k + 1])
+                {
+                    TranslateArray[k + 1] = temp;
+                }
             }
             else
-                MessageBox.Show("It's a first conversation", "Error");
+                return;
         }
-
         private void textBoxTranslateText_TextChanged(object sender, EventArgs e)
         {
-            //IsTextWasChanged = true;
+            if (textBoxTranslateText.Text.Trim() != string.Empty)
+                pictureBoxLeft.Enabled = true;
+            else
+                pictureBoxLeft.Enabled = false;
         }
         private void textBoxTranslateText_MouseMove(object sender, MouseEventArgs e)
         {
@@ -238,15 +256,16 @@ namespace NooTranslateHelper
         {
             pictureBoxRight.Image = Image.FromFile("right_moved.png");
             temp = textBoxTranslateText.Text;
-            if (temp.Contains("\n"))
-                temp = temp.Replace("\n", "") + "\n";
         }
         private void pictureBoxLeft_MouseMove(object sender, MouseEventArgs e)
         {
+            if (TranslateArray.Count == k)
+            {
+                TranslateArray.Add(null);
+            }
+            
             pictureBoxLeft.Image = Image.FromFile("left_moved.png");
             temp = textBoxTranslateText.Text;
-            if (temp.Contains("\n"))
-                temp = temp.Replace("\n", "") + "\n";
         }
 
         private void pictureBoxRight_MouseLeave(object sender, EventArgs e)
@@ -269,15 +288,12 @@ namespace NooTranslateHelper
             pictureBoxGoogleTranslate.Image = Image.FromFile("Translate_logo.max-500x500.png");
         }
 
-        private void roundButton1_Click(object sender, EventArgs e) //пофиксить
+        private void roundButtonExit_Click(object sender, EventArgs e)
         {
-            if (TranslateArray != null && TranslateArray[0].Trim() != String.Empty)
-            {
-                saveToolStripMenuItem_Click(sender, e);
-                Application.Restart();
-            }
-            else
-                Application.Restart();
+            saveToolStripMenuItem_Click(sender, e);
+            Application.Restart();
         }
     }
 }
+
+//пофиксить сейв, согласовать с переключателями, пофиксить перелючатели

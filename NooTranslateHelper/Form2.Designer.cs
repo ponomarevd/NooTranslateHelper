@@ -136,6 +136,7 @@
             // pictureBoxLeft
             // 
             this.pictureBoxLeft.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxLeft.Enabled = false;
             this.pictureBoxLeft.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLeft.Image")));
             this.pictureBoxLeft.Location = new System.Drawing.Point(16, 131);
             this.pictureBoxLeft.Name = "pictureBoxLeft";
@@ -180,7 +181,7 @@
             this.roundButton1.Size = new System.Drawing.Size(77, 40);
             this.roundButton1.TabIndex = 12;
             this.roundButton1.Text = "BACK";
-            this.roundButton1.Click += new System.EventHandler(this.roundButton1_Click);
+            this.roundButton1.Click += new System.EventHandler(this.roundButtonExit_Click);
             // 
             // roundButtonShowFile
             // 
