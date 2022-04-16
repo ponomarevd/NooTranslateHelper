@@ -43,6 +43,7 @@
             this.roundButton1 = new NooTranslateHelper.RoundButton();
             this.roundButtonShowFile = new NooTranslateHelper.RoundButton();
             this.roundButtonNext = new NooTranslateHelper.RoundButton();
+            this.saveBindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoogleTranslate)).BeginInit();
@@ -96,7 +97,8 @@
             this.menuStrip1.BackColor = System.Drawing.Color.Transparent;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.savePointToolStripMenuItem,
-            this.saveToolStripMenuItem});
+            this.saveToolStripMenuItem,
+            this.saveBindToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(499, 24);
@@ -225,6 +227,15 @@
             this.roundButtonNext.Text = "NEXT";
             this.roundButtonNext.Click += new System.EventHandler(this.roundButtonNext_Click);
             // 
+            // saveBindToolStripMenuItem
+            // 
+            this.saveBindToolStripMenuItem.Name = "saveBindToolStripMenuItem";
+            this.saveBindToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveBindToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.saveBindToolStripMenuItem.Text = "SaveBind";
+            this.saveBindToolStripMenuItem.Visible = false;
+            this.saveBindToolStripMenuItem.Click += new System.EventHandler(this.saveBindToolStripMenuItem_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -274,5 +285,6 @@
         private System.Windows.Forms.PictureBox pictureBoxRight;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private RoundButton roundButton1;
+        private System.Windows.Forms.ToolStripMenuItem saveBindToolStripMenuItem;
     }
 }

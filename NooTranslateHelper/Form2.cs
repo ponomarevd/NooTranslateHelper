@@ -14,7 +14,8 @@ namespace NooTranslateHelper
     {
         string[] readText;                                                                                              
         List<string> TranslateList = new List<string>();
-        string temp = null;
+        string tempRight = null;
+        string tempLeft = null;
         int k = 0;
         public Form2()
         {
@@ -79,6 +80,9 @@ namespace NooTranslateHelper
 
             pictureBoxLeft.Image = Image.FromFile("left_off.png");
             pictureBoxLeft.Enabled = false;
+
+            pictureBoxRight.Image = Image.FromFile("right_off.png");
+            pictureBoxRight.Enabled = false;
         }
         private void roundButtonNext_Click(object sender, EventArgs e)
         {
@@ -171,8 +175,8 @@ namespace NooTranslateHelper
                 form3.Show();
         }
         private void pictureBoxRight_Click(object sender, EventArgs e)
-        {
-            if (textBoxTranslateText.Text.Trim() == String.Empty || textBoxTranslateText.Text == "Enter the translation...")
+        { 
+            if (textBoxTranslateText.Text.Trim() == String.Empty || textBoxTranslateText.Text == null)
                 return;
 
             if (k < TranslateList.Count - 1)
@@ -180,8 +184,8 @@ namespace NooTranslateHelper
                 k++;
                 StringWrap(readText[k], labelSubsText);
                 textBoxTranslateText.Text = TranslateList[k];
-                if (temp != TranslateList[k - 1])
-                    TranslateList[k - 1] = temp;
+                if (tempRight != TranslateList[k - 1])
+                    TranslateList[k - 1] = tempRight;
             }
             else
                 return;    
@@ -193,11 +197,11 @@ namespace NooTranslateHelper
                 k--;
                 StringWrap(readText[k], labelSubsText);
                 textBoxTranslateText.Text = TranslateList[k];
-                if (temp != TranslateList[k + 1])
-                    TranslateList[k + 1] = temp;
+                if (tempLeft != TranslateList[k + 1])
+                    TranslateList[k + 1] = tempLeft;
             }
             else
-                return;
+                return;  
         }
         private void textBoxTranslateText_MouseMove(object sender, MouseEventArgs e)
         {
@@ -211,19 +215,19 @@ namespace NooTranslateHelper
         private void pictureBoxRight_MouseMove(object sender, MouseEventArgs e)
         {
             pictureBoxRight.Image = Image.FromFile("right_moved.png");
-            temp = textBoxTranslateText.Text;
+            tempRight = textBoxTranslateText.Text;
         }
         private void pictureBoxLeft_MouseMove(object sender, MouseEventArgs e)
         {
             if (TranslateList.Count == k)
                 TranslateList.Add(null);
-            
+
             pictureBoxLeft.Image = Image.FromFile("left_moved.png");
-            temp = textBoxTranslateText.Text;
+            tempLeft = textBoxTranslateText.Text;
         }
         private void textBoxTranslateText_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxTranslateText.Text.Trim() != string.Empty)
+            if (textBoxTranslateText.Text.Trim() != string.Empty && k!=0)
             {
                 pictureBoxLeft.Enabled = true;
                 pictureBoxLeft.Image = Image.FromFile("left.png");
@@ -284,6 +288,25 @@ namespace NooTranslateHelper
             txt.StartInfo.FileName = "notepad.exe";
             txt.StartInfo.Arguments = $@"{Program.FilePath}";
             txt.Start();
+        }
+
+        private void saveBindToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string[] TranslatedTextOut = new string[TranslateList.Count];
+
+            for (int i = 0; i < TranslateList.Count; i++)
+                TranslatedTextOut[i] = TranslateList[i].ToString() + "\n";
+
+            string NewFilePath = null;
+
+            if (Program.FilePath.Contains(Program.RealFileName))
+                NewFilePath = Program.FilePath.Replace(Program.RealFileName, $"Translate_{Program.RealFileName}");
+
+            using (StreamWriter writer = new StreamWriter(NewFilePath))
+            {
+                foreach (string str in TranslatedTextOut)
+                    writer.WriteLine(str);
+            }
         }
     }
 }
