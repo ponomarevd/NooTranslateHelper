@@ -45,6 +45,7 @@ namespace NooTranslateHelper
             catch (Exception)
             {
                 MessageBox.Show("File wasn't be chosen! Try again.", "Error");
+                return;
             }
         }
 
@@ -53,17 +54,20 @@ namespace NooTranslateHelper
             //GetSubs("www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile");
             try
             {
-                if (Program.FilePath != null)                                //если с путем к файлу все норм то идем дальше
+                if (Program.FilePath != null && Program.FilePath != string.Empty)  //если с путем к файлу все норм то идем дальше
                 {
-                    Form2 form2 = new Form2();                                         
+                    Form2 form2 = new Form2();
                     Program.Context.MainForm = form2;
-                    form2.Show();                                            //открываем вторую форму
+                    form2.Show();                                               //открываем вторую форму
                     Close();
-                }  
+                }
+                else
+                    return;
             }
-            catch (NullReferenceException)
+            catch (Exception)
             {
                 MessageBox.Show("Please select file!", "Error");
+                return;
             }
         }
         private void загрузитьToolStripMenuItem_Click(object sender, EventArgs e) //обработка загрузки файла через MenuStrip
