@@ -37,18 +37,21 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.savePointToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveBindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pictureBoxGoogleTranslate = new System.Windows.Forms.PictureBox();
             this.pictureBoxLeft = new System.Windows.Forms.PictureBox();
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.labelCountForEnd = new System.Windows.Forms.Label();
             this.roundButton1 = new NooTranslateHelper.RoundButton();
             this.roundButtonShowFile = new NooTranslateHelper.RoundButton();
             this.roundButtonNext = new NooTranslateHelper.RoundButton();
-            this.saveBindToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoogleTranslate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLeft)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // labelSubsText
@@ -121,6 +124,15 @@
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
+            // saveBindToolStripMenuItem
+            // 
+            this.saveBindToolStripMenuItem.Name = "saveBindToolStripMenuItem";
+            this.saveBindToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
+            this.saveBindToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
+            this.saveBindToolStripMenuItem.Text = "SaveBind";
+            this.saveBindToolStripMenuItem.Visible = false;
+            this.saveBindToolStripMenuItem.Click += new System.EventHandler(this.saveBindToolStripMenuItem_Click);
+            // 
             // pictureBoxGoogleTranslate
             // 
             this.pictureBoxGoogleTranslate.BackColor = System.Drawing.Color.Transparent;
@@ -163,6 +175,26 @@
             this.pictureBoxRight.Click += new System.EventHandler(this.pictureBoxRight_Click);
             this.pictureBoxRight.MouseLeave += new System.EventHandler(this.pictureBoxRight_MouseLeave);
             this.pictureBoxRight.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBoxRight_MouseMove);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.BackColor = System.Drawing.Color.Transparent;
+            this.groupBox1.Controls.Add(this.labelCountForEnd);
+            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.Location = new System.Drawing.Point(165, 194);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(95, 39);
+            this.groupBox1.TabIndex = 13;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "To end";
+            // 
+            // labelCountForEnd
+            // 
+            this.labelCountForEnd.AutoSize = true;
+            this.labelCountForEnd.Location = new System.Drawing.Point(6, 16);
+            this.labelCountForEnd.Name = "labelCountForEnd";
+            this.labelCountForEnd.Size = new System.Drawing.Size(0, 13);
+            this.labelCountForEnd.TabIndex = 0;
             // 
             // roundButton1
             // 
@@ -220,21 +252,12 @@
             this.roundButtonNext.ButtonRoundRadius = 30;
             this.roundButtonNext.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roundButtonNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.roundButtonNext.Location = new System.Drawing.Point(156, 153);
+            this.roundButtonNext.Location = new System.Drawing.Point(155, 148);
             this.roundButtonNext.Name = "roundButtonNext";
             this.roundButtonNext.Size = new System.Drawing.Size(175, 40);
             this.roundButtonNext.TabIndex = 6;
             this.roundButtonNext.Text = "NEXT";
             this.roundButtonNext.Click += new System.EventHandler(this.roundButtonNext_Click);
-            // 
-            // saveBindToolStripMenuItem
-            // 
-            this.saveBindToolStripMenuItem.Name = "saveBindToolStripMenuItem";
-            this.saveBindToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveBindToolStripMenuItem.Size = new System.Drawing.Size(67, 20);
-            this.saveBindToolStripMenuItem.Text = "SaveBind";
-            this.saveBindToolStripMenuItem.Visible = false;
-            this.saveBindToolStripMenuItem.Click += new System.EventHandler(this.saveBindToolStripMenuItem_Click);
             // 
             // Form2
             // 
@@ -242,6 +265,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(499, 245);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.roundButton1);
             this.Controls.Add(this.pictureBoxRight);
             this.Controls.Add(this.pictureBoxLeft);
@@ -265,6 +289,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxGoogleTranslate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxLeft)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxRight)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,5 +312,7 @@
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
         private RoundButton roundButton1;
         private System.Windows.Forms.ToolStripMenuItem saveBindToolStripMenuItem;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label labelCountForEnd;
     }
 }

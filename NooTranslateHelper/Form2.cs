@@ -17,6 +17,7 @@ namespace NooTranslateHelper
         string tempRight = null;
         string tempLeft = null;
         int k = 0;
+        int count;
         public Form2()
         {
             InitializeComponent();
@@ -78,6 +79,9 @@ namespace NooTranslateHelper
             }
             readText = readText.Where(x => x != null).ToArray();
 
+            count = readText.Length;
+            labelCountForEnd.Text = count.ToString();
+
             pictureBoxLeft.Image = Image.FromFile("left_off.png");
             pictureBoxLeft.Enabled = false;
 
@@ -93,10 +97,20 @@ namespace NooTranslateHelper
                 return;
             }
 
+            if (k == TranslateList.Count)
+            {
+                pictureBoxRight.Image = Image.FromFile("right_off.png");
+                pictureBoxRight.Enabled = false;
+            }
+            count--;
+            labelCountForEnd.Text = count.ToString();
+
             k++;                                                                                                              
             if (k >= readText.Length)                                      
             {
-                MessageBox.Show("It's all!", "Good job");                  
+                labelCountForEnd.Text = "Good job!";
+                MessageBox.Show("It's all!", "Good job");
+                saveToolStripMenuItem_Click(sender, e);
                 Application.Restart();                                    
             }
             else 
@@ -179,6 +193,14 @@ namespace NooTranslateHelper
             if (textBoxTranslateText.Text.Trim() == String.Empty || textBoxTranslateText.Text == null)
                 return;
 
+            if (k == TranslateList.Count-2)
+            {
+                pictureBoxRight.Image = Image.FromFile("right_off.png");
+                pictureBoxRight.Enabled = false;
+                roundButtonNext.Visible = true;
+                roundButtonNext.Enabled = true;
+            }
+
             if (k < TranslateList.Count - 1)
             {
                 k++;
@@ -188,10 +210,15 @@ namespace NooTranslateHelper
                     TranslateList[k - 1] = tempRight;
             }
             else
-                return;    
+                return;  
         }
         private void pictureBoxLeft_Click(object sender, EventArgs e)
         {
+            roundButtonNext.Visible = false;
+            roundButtonNext.Enabled = false;
+            pictureBoxRight.Image = Image.FromFile("right.png");
+            pictureBoxRight.Enabled = true;
+
             if (k > 0)
             {
                 k--;
@@ -201,7 +228,12 @@ namespace NooTranslateHelper
                     TranslateList[k + 1] = tempLeft;
             }
             else
-                return;  
+                return;
+            if (k == 0)
+            {
+                pictureBoxLeft.Image = Image.FromFile("left_off.png");
+                pictureBoxLeft.Enabled = false;
+            }
         }
         private void textBoxTranslateText_MouseMove(object sender, MouseEventArgs e)
         {
@@ -214,6 +246,11 @@ namespace NooTranslateHelper
         }
         private void pictureBoxRight_MouseMove(object sender, MouseEventArgs e)
         {
+            if (k == TranslateList.Count - 1)
+            {
+                pictureBoxRight.Image = Image.FromFile("right_off.png");
+                pictureBoxRight.Enabled = false;
+            }
             pictureBoxRight.Image = Image.FromFile("right_moved.png");
             tempRight = textBoxTranslateText.Text;
         }
@@ -259,12 +296,24 @@ namespace NooTranslateHelper
         }
         private void pictureBoxRight_MouseLeave(object sender, EventArgs e)
         {
-            pictureBoxRight.Image = Image.FromFile("right.png"); 
+            if (k == TranslateList.Count - 1)
+            {
+                pictureBoxRight.Image = Image.FromFile("right_off.png");
+                pictureBoxRight.Enabled = false;
+            }
+            else
+                pictureBoxRight.Image = Image.FromFile("right.png"); 
         }
 
         private void pictureBoxLeft_MouseLeave(object sender, EventArgs e)
         {
-            pictureBoxLeft.Image = Image.FromFile("left.png");
+            if (k == 0) 
+            {
+                pictureBoxLeft.Image = Image.FromFile("left_off.png");
+                pictureBoxLeft.Enabled=false;   
+            }
+            else
+                pictureBoxLeft.Image = Image.FromFile("left.png");
         }
 
         private void pictureBoxGoogleTranslate_MouseMove(object sender, MouseEventArgs e)
