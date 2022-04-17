@@ -18,7 +18,6 @@ namespace NooTranslateHelper
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.CountOfClickOnGoogleTranslate--;
-            thread.Abort();
         }
         public string TranslateText(string input)
         {
