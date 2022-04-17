@@ -105,16 +105,24 @@ namespace NooTranslateHelper
             count--;
             labelCountForEnd.Text = count.ToString();
 
-            k++;                                                                                                              
-            if (k >= readText.Length)                                      
+            k++;
+            if (k >= readText.Length)
             {
                 labelCountForEnd.Text = "Good job!";
                 MessageBox.Show("It's all!", "Good job");
                 saveToolStripMenuItem_Click(sender, e);
-                Application.Restart();                                    
+                Application.Restart();
             }
-            else 
-                StringWrap(readText[k], labelSubsText);                           
+            else
+            {
+                StringWrap(readText[k], labelSubsText);
+                if (k > 1)
+                {
+                    if (tempRight != TranslateList[k - 1])
+                        TranslateList[k - 1] = tempRight;
+                }
+            }
+                                         
 
             TranslateList.Add(textBoxTranslateText.Text);
 
@@ -127,11 +135,14 @@ namespace NooTranslateHelper
                 OpenFileDialog ofd = new OpenFileDialog();                           
                 ofd.ShowDialog();                                                    
                 string TranslateFilePath = ofd.FileName;                         
-                string AllText = File.ReadAllText(TranslateFilePath);           
+                string AllText = File.ReadAllText(TranslateFilePath);
+
+
+                var file = new FileInfo(TranslateFilePath);
 
                 if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}")                    
                     || (!TranslateFilePath.Contains(Program.RealFileName)         
-                    || AllText == null))                                          
+                    || AllText == null) || file.Length == 0)                                          
                 {
                     MessageBox.Show("Please select correct file", "Error");       
                     TranslateFilePath = null;                                     
@@ -149,9 +160,11 @@ namespace NooTranslateHelper
 
                 k = TranslateList.Count;
                 StringWrap(readText[k], labelSubsText);
-                textBoxTranslateText.Clear();
+
                 count = readText.Length - k;
                 labelCountForEnd.Text = count.ToString();
+
+                textBoxTranslateText.Clear();
             }
             catch (Exception)
             {
@@ -364,6 +377,11 @@ namespace NooTranslateHelper
         private void timer1_Tick(object sender, EventArgs e)
         {
             saveBindToolStripMenuItem_Click(sender, e);
+        }
+
+        private void roundButtonNext_MouseMove(object sender, MouseEventArgs e)
+        {
+            tempRight = textBoxTranslateText.Text;
         }
     }
 }

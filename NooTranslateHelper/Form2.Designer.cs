@@ -265,6 +265,7 @@
             this.roundButtonNext.TabIndex = 6;
             this.roundButtonNext.Text = "NEXT";
             this.roundButtonNext.Click += new System.EventHandler(this.roundButtonNext_Click);
+            this.roundButtonNext.MouseMove += new System.Windows.Forms.MouseEventHandler(this.roundButtonNext_MouseMove);
             // 
             // Form2
             // 
@@ -285,6 +286,8 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximumSize = new System.Drawing.Size(515, 339);
+            this.MinimumSize = new System.Drawing.Size(515, 339);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Translate Tool";
