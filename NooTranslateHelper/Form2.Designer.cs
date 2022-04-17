@@ -43,6 +43,7 @@
             this.pictureBoxRight = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.labelCountForEnd = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.roundButton1 = new NooTranslateHelper.RoundButton();
             this.roundButtonShowFile = new NooTranslateHelper.RoundButton();
             this.roundButtonNext = new NooTranslateHelper.RoundButton();
@@ -196,6 +197,12 @@
             this.labelCountForEnd.Size = new System.Drawing.Size(0, 13);
             this.labelCountForEnd.TabIndex = 0;
             // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 60000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // roundButton1
             // 
             this.roundButton1.BackColor = System.Drawing.Color.IndianRed;
@@ -313,5 +320,6 @@
         private System.Windows.Forms.ToolStripMenuItem saveBindToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label labelCountForEnd;
+        private System.Windows.Forms.Timer timer1;
     }
 }

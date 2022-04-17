@@ -148,7 +148,10 @@ namespace NooTranslateHelper
                 TranslateList = TranslateList.Where(x => x != null).ToList();
 
                 k = TranslateList.Count;
-                StringWrap(readText[k], labelSubsText);                                        
+                StringWrap(readText[k], labelSubsText);
+                textBoxTranslateText.Clear();
+                count = readText.Length - k;
+                labelCountForEnd.Text = count.ToString();
             }
             catch (Exception)
             {
@@ -356,6 +359,11 @@ namespace NooTranslateHelper
                 foreach (string str in TranslatedTextOut)
                     writer.WriteLine(str);
             }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            saveBindToolStripMenuItem_Click(sender, e);
         }
     }
 }
