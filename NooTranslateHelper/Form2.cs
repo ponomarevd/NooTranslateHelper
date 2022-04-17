@@ -197,8 +197,8 @@ namespace NooTranslateHelper
             {
                 pictureBoxRight.Image = Image.FromFile("right_off.png");
                 pictureBoxRight.Enabled = false;
-                roundButtonNext.Visible = true;
                 roundButtonNext.Enabled = true;
+                roundButtonNext.Visible = true;
             }
 
             if (k < TranslateList.Count - 1)

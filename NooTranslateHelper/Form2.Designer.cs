@@ -275,6 +275,7 @@
             this.Controls.Add(this.roundButtonNext);
             this.Controls.Add(this.textBoxTranslateText);
             this.Controls.Add(this.labelSubsText);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.MaximumSize = new System.Drawing.Size(515, 284);
