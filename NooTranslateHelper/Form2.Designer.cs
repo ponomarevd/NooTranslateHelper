@@ -85,7 +85,7 @@
             // 
             this.textBoxTranslateText.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxTranslateText.ForeColor = System.Drawing.Color.Gray;
-            this.textBoxTranslateText.Location = new System.Drawing.Point(16, 103);
+            this.textBoxTranslateText.Location = new System.Drawing.Point(16, 118);
             this.textBoxTranslateText.Name = "textBoxTranslateText";
             this.textBoxTranslateText.Size = new System.Drawing.Size(471, 22);
             this.textBoxTranslateText.TabIndex = 5;
@@ -137,7 +137,7 @@
             // 
             this.pictureBoxGoogleTranslate.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxGoogleTranslate.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxGoogleTranslate.Image")));
-            this.pictureBoxGoogleTranslate.Location = new System.Drawing.Point(12, 194);
+            this.pictureBoxGoogleTranslate.Location = new System.Drawing.Point(12, 248);
             this.pictureBoxGoogleTranslate.Name = "pictureBoxGoogleTranslate";
             this.pictureBoxGoogleTranslate.Size = new System.Drawing.Size(44, 39);
             this.pictureBoxGoogleTranslate.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -152,7 +152,7 @@
             this.pictureBoxLeft.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxLeft.Enabled = false;
             this.pictureBoxLeft.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLeft.Image")));
-            this.pictureBoxLeft.Location = new System.Drawing.Point(16, 131);
+            this.pictureBoxLeft.Location = new System.Drawing.Point(16, 146);
             this.pictureBoxLeft.Name = "pictureBoxLeft";
             this.pictureBoxLeft.Size = new System.Drawing.Size(40, 26);
             this.pictureBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -166,7 +166,7 @@
             // 
             this.pictureBoxRight.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxRight.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxRight.Image")));
-            this.pictureBoxRight.Location = new System.Drawing.Point(62, 131);
+            this.pictureBoxRight.Location = new System.Drawing.Point(62, 146);
             this.pictureBoxRight.Name = "pictureBoxRight";
             this.pictureBoxRight.Size = new System.Drawing.Size(40, 26);
             this.pictureBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -181,7 +181,7 @@
             this.groupBox1.BackColor = System.Drawing.Color.Transparent;
             this.groupBox1.Controls.Add(this.labelCountForEnd);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(165, 194);
+            this.groupBox1.Location = new System.Drawing.Point(165, 248);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(95, 39);
             this.groupBox1.TabIndex = 13;
@@ -210,7 +210,7 @@
             this.roundButton1.ButtonRoundRadius = 30;
             this.roundButton1.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roundButton1.ForeColor = System.Drawing.Color.White;
-            this.roundButton1.Location = new System.Drawing.Point(410, 194);
+            this.roundButton1.Location = new System.Drawing.Point(410, 248);
             this.roundButton1.Name = "roundButton1";
             this.roundButton1.Size = new System.Drawing.Size(77, 40);
             this.roundButton1.TabIndex = 12;
@@ -231,7 +231,7 @@
             this.roundButtonShowFile.ButtonRoundRadius = 30;
             this.roundButtonShowFile.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roundButtonShowFile.ForeColor = System.Drawing.Color.White;
-            this.roundButtonShowFile.Location = new System.Drawing.Point(62, 194);
+            this.roundButtonShowFile.Location = new System.Drawing.Point(62, 248);
             this.roundButtonShowFile.Name = "roundButtonShowFile";
             this.roundButtonShowFile.Size = new System.Drawing.Size(97, 40);
             this.roundButtonShowFile.TabIndex = 9;
@@ -252,7 +252,7 @@
             this.roundButtonNext.ButtonRoundRadius = 30;
             this.roundButtonNext.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.roundButtonNext.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.roundButtonNext.Location = new System.Drawing.Point(155, 148);
+            this.roundButtonNext.Location = new System.Drawing.Point(165, 193);
             this.roundButtonNext.Name = "roundButtonNext";
             this.roundButtonNext.Size = new System.Drawing.Size(175, 40);
             this.roundButtonNext.TabIndex = 6;
@@ -264,7 +264,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(499, 245);
+            this.ClientSize = new System.Drawing.Size(499, 300);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.roundButton1);
             this.Controls.Add(this.pictureBoxRight);
@@ -278,8 +278,6 @@
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.MaximumSize = new System.Drawing.Size(515, 284);
-            this.MinimumSize = new System.Drawing.Size(515, 284);
             this.Name = "Form2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Translate Tool";

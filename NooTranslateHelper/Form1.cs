@@ -16,12 +16,6 @@ namespace NooTranslateHelper
             InitializeComponent();
         }
         OpenFileDialog ofd;                                                 //инициализируем объект класса OpenFileDialog, для дальнейшей загрузки файла
-        /*private void GetSubs(string url)
-        {
-            string urlDownload = $"https://savesubs.com/process?url={url}";
-            HttpClient client = new HttpClient();
-            string result = client.GetStringAsync(urlDownload).Result;
-        }*/
         private void pictureBox1_Click(object sender, EventArgs e)
         {
             try
@@ -33,9 +27,17 @@ namespace NooTranslateHelper
 
                 Program.FilePath = ofd.FileName;                            //получаем путь к файлу
 
+                var file = new FileInfo(Program.FilePath);
+                if (file.Length == 0)                                       //проверка на пустоту файла
+                {
+                    MessageBox.Show("Please select a non-empty file!", "Error");
+                    Program.FilePath = null;
+                    return;
+                }
+
                 string AllText = File.ReadAllText(Program.FilePath);        //записываем весь текст файла в переменную для проверки на язык
 
-                if (!(!Regex.IsMatch(AllText, @"\p{IsCyrillic}")))          //проверка на язык
+                if (Regex.IsMatch(AllText, @"\p{IsCyrillic}"))              //проверка на язык
                 {
                     MessageBox.Show("Please select file with english language!", "Error"); //если язык русский, то просим загрузить английский
                     Program.FilePath = null;                                               //присваем null чтобы при повторном нажатии нас не пустило на 2 форму
@@ -51,9 +53,9 @@ namespace NooTranslateHelper
 
         private void roundButton1_Click(object sender, EventArgs e)
         {
-            //GetSubs("www.youtube.com/watch?v=cbGB__V8MNk&ab_channel=Computerphile");
             try
             {
+
                 if (Program.FilePath != null && Program.FilePath != string.Empty)  //если с путем к файлу все норм то идем дальше
                 {
                     Form2 form2 = new Form2();
