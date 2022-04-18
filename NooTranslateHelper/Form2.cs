@@ -106,6 +106,13 @@ namespace NooTranslateHelper
             count--;
             labelCountForEnd.Text = count.ToString();
 
+            if (k != 0 )                        //фиксить
+            {
+                TranslateList.Add("empty");
+                if (tempNext != TranslateList[k])
+                    TranslateList[k] = tempNext;
+            }
+            
             k++;
             if (k >= readText.Length)
             {
