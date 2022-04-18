@@ -106,13 +106,6 @@ namespace NooTranslateHelper
             count--;
             labelCountForEnd.Text = count.ToString();
 
-            if (k != 0 )                        //фиксить
-            {
-                TranslateList.Add("empty");
-                if (tempNext != TranslateList[k])
-                    TranslateList[k] = tempNext;
-            }
-            
             k++;
             if (k >= readText.Length)
             {
@@ -125,7 +118,8 @@ namespace NooTranslateHelper
                 StringWrap(readText[k], labelSubsText);
                                          
 
-            TranslateList.Add(textBoxTranslateText.Text);
+            TranslateList.Add("Empty");
+            TranslateList[k-1] = textBoxTranslateText.Text;
 
             textBoxTranslateText.Clear();                                               
         }
@@ -277,11 +271,15 @@ namespace NooTranslateHelper
                 TranslateList.Add(null);
 
             pictureBoxLeft.Image = Image.FromFile("left_moved.png");
-            tempLeft = textBoxTranslateText.Text;
+
+            if (textBoxTranslateText.Text.Trim() == String.Empty)
+                tempLeft = String.Empty;
+            else
+                tempLeft = textBoxTranslateText.Text;
         }
         private void textBoxTranslateText_TextChanged(object sender, EventArgs e)
         {
-            if (textBoxTranslateText.Text.Trim() != string.Empty && k!=0)
+            if (k!=0)
             {
                 pictureBoxLeft.Enabled = true;
                 pictureBoxLeft.Image = Image.FromFile("left.png");
