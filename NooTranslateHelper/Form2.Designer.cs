@@ -62,7 +62,7 @@
             this.labelSubsText.ContextMenuStrip = this.contextMenuStrip1;
             this.labelSubsText.Font = new System.Drawing.Font("Arial Rounded MT Bold", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelSubsText.ForeColor = System.Drawing.Color.White;
-            this.labelSubsText.Location = new System.Drawing.Point(12, 44);
+            this.labelSubsText.Location = new System.Drawing.Point(12, 52);
             this.labelSubsText.Name = "labelSubsText";
             this.labelSubsText.Size = new System.Drawing.Size(0, 24);
             this.labelSubsText.TabIndex = 4;

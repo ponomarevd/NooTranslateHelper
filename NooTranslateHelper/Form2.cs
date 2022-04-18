@@ -118,7 +118,7 @@ namespace NooTranslateHelper
                 StringWrap(readText[k], labelSubsText);
                                          
 
-            TranslateList.Add("Empty");
+            TranslateList.Add("");
             TranslateList[k-1] = textBoxTranslateText.Text;
 
             textBoxTranslateText.Clear();                                               
