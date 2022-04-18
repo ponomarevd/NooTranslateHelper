@@ -16,6 +16,7 @@ namespace NooTranslateHelper
         List<string> TranslateList = new List<string>();
         string tempRight = null;
         string tempLeft = null;
+        string tempNext = null;
         int k = 0;
         int count;
         public Form2()
@@ -114,14 +115,7 @@ namespace NooTranslateHelper
                 Application.Restart();
             }
             else
-            {
                 StringWrap(readText[k], labelSubsText);
-                if (k > 1)
-                {
-                    if (tempRight != TranslateList[k - 1])
-                        TranslateList[k - 1] = tempRight;
-                }
-            }
                                          
 
             TranslateList.Add(textBoxTranslateText.Text);
@@ -381,7 +375,7 @@ namespace NooTranslateHelper
 
         private void roundButtonNext_MouseMove(object sender, MouseEventArgs e)
         {
-            tempRight = textBoxTranslateText.Text;
+            tempNext = textBoxTranslateText.Text;
         }
     }
 }
