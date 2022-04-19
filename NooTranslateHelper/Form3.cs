@@ -65,15 +65,6 @@ namespace NooTranslateHelper
                 MessageBox.Show($"{ex}", "Error");
             }
         }
-        private void textBox1_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Shift)
-            {
-                textBox1.Clear();
-                e.Handled = true;
-            }
-        }
-
         private void pictureBox2_Click(object sender, EventArgs e)
         {
             textBox1.Clear();
