@@ -16,13 +16,14 @@ namespace NooTranslateHelper
             InitializeComponent();
         }
         Thread thread;
+        int f;
         private void Form3_FormClosed(object sender, FormClosedEventArgs e)
         {
             Program.CountOfClickOnGoogleTranslate--;
         }
-        public string TranslateText(string input)
+        public string TranslateText(string firstLng, string secondLng, string input)
         {
-            string url = String.Format("https://translate.googleapis.com/translate_a/single?client=gtx&sl={0}&tl={1}&dt=t&q={2}", "en", "ru", Uri.EscapeUriString(input));
+            string url = String.Format("https://translate.googleapis.com/translate_a/single?client=gtx&sl={0}&tl={1}&dt=t&q={2}", firstLng, secondLng, Uri.EscapeUriString(input));
             HttpClient httpClient = new HttpClient();
             string result = httpClient.GetStringAsync(url).Result;
             var jsonData = new JavaScriptSerializer().Deserialize<List<dynamic>>(result);
@@ -52,12 +53,24 @@ namespace NooTranslateHelper
                 {
                     pictureBox2.Visible = true;
                     pictureBox2.Enabled = true;
-                    thread = new Thread(() => 
+                    if (f % 2 != 0)
                     {
-                        string result = TranslateText(textBox1.Text);
-                        textBox2.Text = result;
-                    });
-                    thread.Start(); 
+                        thread = new Thread(() =>
+                        {
+                            string result = TranslateText("ru", "en", textBox1.Text);
+                            textBox2.Text = result;
+                        });
+                        thread.Start();
+                    }
+                    else
+                    {
+                        thread = new Thread(() =>
+                        {
+                            string result = TranslateText("en", "ru", textBox1.Text);
+                            textBox2.Text = result;
+                        });
+                        thread.Start();
+                    }
                 }
             }
             catch (Exception ex)
@@ -83,6 +96,32 @@ namespace NooTranslateHelper
         private void Form3_Load(object sender, EventArgs e)
         {
             pictureBox2.BringToFront();
+        }
+
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            f++;
+            if (f % 2 != 0)
+            {
+                label1.Text = "Russian";
+                label2.Text = "English";
+            }
+            else
+            {
+                label1.Text = "English";
+                label2.Text = "Russian";
+            }
+            textBox1.Clear();
+        }
+
+        private void pictureBox3_MouseMove(object sender, MouseEventArgs e)
+        {
+            pictureBox3.Image = Image.FromFile("change language_moved.png");
+        }
+
+        private void pictureBox3_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox3.Image = Image.FromFile("change language.png");
         }
     }
 }
