@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
+using System.Drawing;
 
 namespace NooTranslateHelper
 {
@@ -42,9 +43,15 @@ namespace NooTranslateHelper
             try
             {
                 if (textBox1.Text.Trim() == string.Empty)
+                {
                     textBox2.Text = string.Empty;
+                    pictureBox2.Visible = false;
+                    pictureBox2.Enabled = false;
+                }
                 else
                 {
+                    pictureBox2.Visible = true;
+                    pictureBox2.Enabled = true;
                     thread = new Thread(() => 
                     {
                         string result = TranslateText(textBox1.Text);
@@ -58,14 +65,6 @@ namespace NooTranslateHelper
                 MessageBox.Show($"{ex}", "Error");
             }
         }
-        private void textBox1_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)Keys.LShiftKey)
-            {
-                textBox1.Clear();
-                e.Handled = true;
-            }
-        }
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Shift)
@@ -73,6 +72,26 @@ namespace NooTranslateHelper
                 textBox1.Clear();
                 e.Handled = true;
             }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            textBox1.Clear();
+        }
+
+        private void pictureBox2_MouseMove(object sender, MouseEventArgs e)
+        {
+            pictureBox2.Image = Image.FromFile("clearTranslate_moved.png");
+        }
+
+        private void pictureBox2_MouseLeave(object sender, EventArgs e)
+        {
+            pictureBox2.Image = Image.FromFile("clearTranslate.png");
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+            pictureBox2.BringToFront();
         }
     }
 }
