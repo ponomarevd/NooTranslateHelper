@@ -132,11 +132,9 @@ namespace NooTranslateHelper
                 string TranslateFilePath = ofd.FileName;                         
                 string AllText = File.ReadAllText(TranslateFilePath);
 
-
                 var file = new FileInfo(TranslateFilePath);
 
-                if (!Regex.IsMatch(AllText, @"\p{IsCyrillic}")                    
-                    || (!TranslateFilePath.Contains(Program.RealFileName)         
+                if ((!TranslateFilePath.Contains(Program.RealFileName)         
                     || AllText == null) || file.Length == 0)                                          
                 {
                     MessageBox.Show("Please select correct file", "Error");       
@@ -160,6 +158,8 @@ namespace NooTranslateHelper
                 labelCountForEnd.Text = count.ToString();
 
                 textBoxTranslateText.Clear();
+                pictureBoxLeft.Enabled = true;
+                pictureBoxLeft.Image = Image.FromFile("left.png");
             }
             catch (Exception)
             {

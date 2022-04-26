@@ -60,7 +60,7 @@ namespace NooTranslateHelper
                 {
                     Form2 form2 = new Form2();
                     Program.Context.MainForm = form2;
-                    form2.Show();                                               //открываем вторую форму
+                    form2.Show();                                                   //открываем вторую форму
                     Close();
                 }
                 else
