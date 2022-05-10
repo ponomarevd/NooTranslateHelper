@@ -155,7 +155,7 @@
             this.pictureBoxLeft.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxLeft.Image")));
             this.pictureBoxLeft.Location = new System.Drawing.Point(16, 146);
             this.pictureBoxLeft.Name = "pictureBoxLeft";
-            this.pictureBoxLeft.Size = new System.Drawing.Size(40, 26);
+            this.pictureBoxLeft.Size = new System.Drawing.Size(52, 37);
             this.pictureBoxLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxLeft.TabIndex = 10;
             this.pictureBoxLeft.TabStop = false;
@@ -167,9 +167,9 @@
             // 
             this.pictureBoxRight.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxRight.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxRight.Image")));
-            this.pictureBoxRight.Location = new System.Drawing.Point(62, 146);
+            this.pictureBoxRight.Location = new System.Drawing.Point(74, 146);
             this.pictureBoxRight.Name = "pictureBoxRight";
-            this.pictureBoxRight.Size = new System.Drawing.Size(40, 26);
+            this.pictureBoxRight.Size = new System.Drawing.Size(44, 37);
             this.pictureBoxRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxRight.TabIndex = 11;
             this.pictureBoxRight.TabStop = false;
